@@ -1,0 +1,18 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.prathanbomb.tamboon.view.ui.main.CharityListFragment">
+    <data>
+        <variable
+            name="charityList"
+            type="com.prathanbomb.tamboon.view.ui.main.CharityListFragment"/>
+        <variable
+            name="isLoading"
+            type="Boolean"/>
+    </data>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="LinearLayoutManager"/>
+</layout>

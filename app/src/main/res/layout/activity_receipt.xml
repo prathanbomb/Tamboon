@@ -1,0 +1,79 @@
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.prathanbomb.tamboon.view.ui.receipt.ReceiptActivity">
+    <data>
+        <variable name="activity" type="com.prathanbomb.tamboon.view.ui.receipt.ReceiptActivity"/>
+        <variable name="receipt" type="com.prathanbomb.tamboon.service.model.Receipt"/>
+        <import type="android.view.View"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/button_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:text="Close"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_amount" />
+
+        <ImageView
+            android:id="@+id/img_logo"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="32dp"
+            android:scaleType="fitCenter"
+            android:src="@{receipt.charity.logo_url}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/charity_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{receipt.charity.name}"
+            android:textSize="18sp"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo"
+            tools:text="Baan Pak Khon Cha Ra" />
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@{`Donator : ` + receipt.name}"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/charity_name"
+            tools:text="Donator : Supitsara Prathan" />
+
+        <TextView
+            android:id="@+id/text_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@{`Amount : ` + receipt.amount + ` THB`}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_name"
+            tools:text="Amount : 2000.00 THB" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
