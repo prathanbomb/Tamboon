@@ -22,7 +22,7 @@ import com.prathanbomb.tamboon.service.model.Receipt
 import com.prathanbomb.tamboon.service.model.Request
 import com.prathanbomb.tamboon.service.model.Result
 import com.prathanbomb.tamboon.view.ui.receipt.ReceiptActivity
-import com.prathanbomb.tamboon.viewmodel.TamboonViewModel
+import com.prathanbomb.tamboon.viewmodel.DonationViewModel
 import java.lang.StringBuilder
 
 
@@ -93,7 +93,7 @@ class PaymentActivity : AppCompatActivity(), LifecycleRegistryOwner, View.OnClic
                     return
                 }
                 token = data!!.getParcelableExtra(CreditCardActivity.EXTRA_TOKEN_OBJECT)
-                val viewModel = ViewModelProviders.of(this).get(TamboonViewModel::class.java)
+                val viewModel = ViewModelProviders.of(this).get(DonationViewModel::class.java)
                 observeViewModel(viewModel)
                 binding.isLoading = true
             }
@@ -101,7 +101,7 @@ class PaymentActivity : AppCompatActivity(), LifecycleRegistryOwner, View.OnClic
         }
     }
 
-    private fun observeViewModel(viewModel: TamboonViewModel) {
+    private fun observeViewModel(viewModel: DonationViewModel) {
         viewModel.makeDonationObservable(
                 Request(binding.editTextName.text.toString(),
                         token.id,

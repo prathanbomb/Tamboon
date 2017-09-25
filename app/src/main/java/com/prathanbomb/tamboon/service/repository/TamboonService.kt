@@ -14,8 +14,8 @@ import retrofit2.http.POST
  */
 interface TamboonService {
     companion object {
-//        var HTTPS_API_TAMBOON_URL = "http://192.168.13.31:8080/"
-        var HTTPS_API_TAMBOON_URL = "http://10.0.2.2:8080/"
+//        var HTTPS_API_TAMBOON_URL = "http://192.168.13.31:9000/"
+        var HTTPS_API_TAMBOON_URL = "http://10.0.2.2:9000/"
     }
     @GET(".")
     fun getCharityList(): Call<List<Charity>>

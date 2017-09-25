@@ -1,5 +1,8 @@
 package com.prathanbomb.tamboon.service.model
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
 import android.os.Parcel
 import android.os.Parcelable
 
@@ -7,11 +10,12 @@ import android.os.Parcelable
  * Created by prathanbomb on 9/13/2017 AD.
  */
 
+@Entity
 class Charity() : Parcelable {
 
-    lateinit var id: String
-    lateinit var name: String
-    lateinit var logo_url: String
+    @PrimaryKey @ColumnInfo (name = "id") lateinit var id: String
+    @ColumnInfo (name = "name") lateinit var name: String
+    @ColumnInfo (name = "logo_url") lateinit var logo_url: String
 
     constructor(parcel: Parcel) : this() {
         id = parcel.readString()

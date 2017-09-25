@@ -18,7 +18,7 @@ import com.prathanbomb.tamboon.service.model.Charity
 import com.prathanbomb.tamboon.view.adapter.CharityAdapter
 import com.prathanbomb.tamboon.view.callback.CharityClickCallback
 import com.prathanbomb.tamboon.view.ui.payment.PaymentActivity
-import com.prathanbomb.tamboon.viewmodel.TamboonViewModel
+import com.prathanbomb.tamboon.viewmodel.CharityListViewModel
 
 /**
  * A simple [Fragment] subclass.
@@ -40,12 +40,12 @@ class CharityListFragment : LifecycleFragment() {
 
     override fun onActivityCreated(@Nullable savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val viewModel = ViewModelProviders.of(this).get(TamboonViewModel::class.java)
+        val viewModel = ViewModelProviders.of(this).get(CharityListViewModel::class.java)
         observeViewModel(viewModel)
     }
 
-    private fun observeViewModel(viewModel: TamboonViewModel) {
-        viewModel.charityListObservable.observe(this, Observer<List<Charity>> { charities ->
+    private fun observeViewModel(viewModel: CharityListViewModel) {
+        viewModel.charityListObservable().observe(this, Observer<List<Charity>> { charities ->
             if (charities != null) {
                 binding!!.isLoading = false
                 this.charities = charities

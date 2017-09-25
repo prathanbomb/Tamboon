@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 26
@@ -12,6 +13,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation":
+                                     "$projectDir/schemas".toString()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -25,9 +32,10 @@ android {
 }
 ext {
     appcompat = "26.1.0"
-    arch = "1.0.0-alpha9"
+    arch = "1.0.0-alpha9-1"
     retrofit = "2.0.2"
     constraintLayout = "1.0.2"
+    rx = "1.2.1"
 }
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -38,7 +46,14 @@ dependencies {
 
     implementation "android.arch.lifecycle:runtime:$arch"
     implementation "android.arch.lifecycle:extensions:$arch"
+    implementation "android.arch.persistence.room:runtime:$arch"
+    implementation "android.arch.lifecycle:extensions:$arch"
+    kapt "android.arch.persistence.room:compiler:$arch"
     annotationProcessor "android.arch.lifecycle:compiler:$arch"
+    annotationProcessor "android.arch.persistence.room:compiler:$arch"
+
+    implementation "io.reactivex:rxjava:$rx"
+    implementation "io.reactivex:rxandroid:$rx"
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit"
@@ -46,7 +61,7 @@ dependencies {
 
     implementation "com.android.support.constraint:constraint-layout:$constraintLayout"
 
-    kapt 'com.android.databinding:compiler:3.0.0-beta5'
+    kapt 'com.android.databinding:compiler:3.0.0-beta6'
     implementation 'io.card:android-sdk:5.5.1'
     implementation 'co.omise:omise-android:2.3.0'
     implementation 'com.github.bumptech.glide:glide:4.1.1'

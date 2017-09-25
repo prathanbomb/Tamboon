@@ -36,22 +36,19 @@ class TamboonRepository private constructor() {
         tamboonService = retrofit.create(TamboonService::class.java)
     }
 
-    val charityList: LiveData<List<Charity>>
-        get() {
-            val data = MutableLiveData<List<Charity>>()
+    fun charityList(): LiveData<List<Charity>> {
+        val data = MutableLiveData<List<Charity>>()
+        tamboonService.getCharityList().enqueue(object : Callback<List<Charity>> {
+            override fun onResponse(call: Call<List<Charity>>, response: Response<List<Charity>>) {
+                data.value = response.body()
+            }
 
-            tamboonService.getCharityList().enqueue(object : Callback<List<Charity>> {
-                override fun onResponse(call: Call<List<Charity>>, response: Response<List<Charity>>) {
-                    data.value = response.body()
-                }
-
-                override fun onFailure(call: Call<List<Charity>>, t: Throwable) {
-                    data.value = null
-                }
-            })
-
-            return data
-        }
+            override fun onFailure(call: Call<List<Charity>>, t: Throwable) {
+                data.value = null
+            }
+        })
+        return data
+    }
 
     fun makeDonation(request: Request): LiveData<Result> {
         val data = MutableLiveData<Result>()
